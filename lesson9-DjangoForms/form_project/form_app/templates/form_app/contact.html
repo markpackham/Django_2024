@@ -9,7 +9,10 @@
   <body>
     <h1>Contact Us</h1>
     <form method="POST">
-      {% csrf_token %} {{ form.as_p }}
+      <!-- Stop Cross Site Request Forgery attacks via a unique token (like in Laravel) -->
+      {% csrf_token %}
+      <!-- Wrap each field in a <p> tag -->
+      {{ form.as_p }}
       <button type="submit">Submit</button>
     </form>
   </body>
