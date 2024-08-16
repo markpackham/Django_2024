@@ -52,7 +52,7 @@ def logout_view(request):
 # Using the decorator
 @login_required
 def home_view(request):
-    return render(request, 'home/home.html')
+    return render(request, 'auth1_app/home.html')
 
 # Protected view (only logged in users can see this)
 class ProtectedView(LoginRequiredMixin, View):
