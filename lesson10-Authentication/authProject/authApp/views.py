@@ -25,7 +25,7 @@ def register_view(request):
         # If not valid create an empty form instance
         else:
             form = RegisterForm()
-            return render(request, 'accounts/register.html', {'form': form})
+        return render(request, 'accounts/register.html', {'form': form})
 
 def login_view(request):
     error_message = None
