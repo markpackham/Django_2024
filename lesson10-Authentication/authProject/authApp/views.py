@@ -41,7 +41,12 @@ def login_view(request):
     return render(request, 'accounts/login.html', {'error': error_message})
 
 def logout_view(request):
-    pass
+    if request.method == "POST":
+        logout(request)
+        return redirect('login')
+    # Handle GET methods
+    else:
+        return redirect('home')
 
 # Home view
 # Using the decorator
