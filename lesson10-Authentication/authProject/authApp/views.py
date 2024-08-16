@@ -14,7 +14,18 @@ from django.contrib.auth.models import User
 from .forms import RegisterForm
 
 def register_view(request):
-    pass
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+            user = User.objects.create_user(username=username, password=password)
+            login(request, user)
+            return redirect('home')
+        # If not valid create an empty form instance
+        else:
+            form = RegisterForm()
+            return render(request, 'accounts/register.html', {'form': form})
 
 def login_view(request):
     pass
