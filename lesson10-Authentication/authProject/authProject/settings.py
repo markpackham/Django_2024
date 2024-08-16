@@ -123,6 +123,9 @@ STATICFILESDIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# Redirect to home after login
+LOGIN_REDIRECT_URL = 'home'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
