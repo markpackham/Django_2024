@@ -22,10 +22,9 @@ def register_view(request):
             user = User.objects.create_user(username=username, password=password)
             login(request, user)
             return redirect('home')
-        # If not valid create an empty form instance
-        else:
-            form = RegisterForm()
-        return render(request, 'accounts/register.html', {'form': form})
+    else:
+        form = RegisterForm()
+    return render(request, 'accounts/register.html', {'form':form})
 
 def login_view(request):
     error_message = None
@@ -37,6 +36,7 @@ def login_view(request):
             login(request, user)
             next_url = request.POST.get('next') or request.GET.get('next') or 'home'
             return redirect(next_url)
+        # If not valid create an empty form instance
         else:
             error_message = "Invalid credentials"  
     return render(request, 'accounts/login.html', {'error': error_message})
