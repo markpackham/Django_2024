@@ -52,4 +52,13 @@ def logout_view(request):
 # Using the decorator
 @login_required
 def home_view(request):
-    pass
+    return render(request, 'home/home.html')
+
+# Protected view (only logged in users can see this)
+class ProtectedView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    # The default redirect field name is 'next' but we are making a custom
+    redirect_field_name = 'redirect_to'
+
+    def get(self, request):
+        return render(request, 'registration/protected.html')
