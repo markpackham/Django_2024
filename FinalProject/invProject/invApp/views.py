@@ -10,6 +10,7 @@ def product_create_view(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
+        # Save to database
             form.save()
             return redirect('product_list')
         # Redirect if it is not a POST request
@@ -25,3 +26,8 @@ def product_update_view(request, product_id):
     product = Product.objects.get(product_id=product_id)
     form = ProductForm(instance=product)
     if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    return render(request, 'invApp/product_form.html', {'form':form})
