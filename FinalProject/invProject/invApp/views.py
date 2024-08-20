@@ -5,6 +5,7 @@ from .models import Product
 def home_view(request):
     return render(request, 'invApp/home.html')
 
+# Create view
 def product_create_view(request):
     form = ProductForm()
     if request.method == 'POST':
@@ -31,3 +32,11 @@ def product_update_view(request, product_id):
             form.save()
             return redirect('product_list')
     return render(request, 'invApp/product_form.html', {'form':form})
+
+# Delete view
+def product_delete_view(request, product_id):
+    product = Product.objects.get(product_id=product_id)
+    if request.method == "POST":
+        product.delete()
+        return redirect('products_list')
+    return render(request, 'invApp/product_confirm_delete.html', {'product':product})
