@@ -14,3 +14,12 @@ def product_create_view(request):
             return redirect('product_list')
         # Redirect if it is not a POST request
     return render(request, 'invApp/product_form.html', {'form':form})
+
+# Read view
+def product_list_view(request):
+    products = Product.objects.all()
+    return render(request, 'invApp/product_list.html', {'products': products})
+
+# Update view
+def product_update_view(request, product_id):
+    Product.objects.get()
